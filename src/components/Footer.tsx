@@ -1,19 +1,15 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import './Footer.css';
-import dynamic from 'next/dynamic';
-import './Footer.css';
-
-const Lanyard = dynamic(() => import('./Lanyard'), {
-    ssr: false,
-    loading: () => <div style={{ height: '100%', width: '100%', minHeight: '300px' }}></div>
-});
+import Lanyard from './Lanyard';
 
 export default function Footer() {
     return (
         <footer className="footer-section" id="contact">
             <div className="footer-lanyard-wrapper">
-                <Lanyard position={[0, 0, 19]} gravity={[0, -40, 0]} />
+                <Suspense fallback={null}>
+                    <Lanyard position={[0, 0, 19]} gravity={[0, -40, 0]} />
+                </Suspense>
             </div>
             <div className="footer-container">
                 {/* Top Brand */}
