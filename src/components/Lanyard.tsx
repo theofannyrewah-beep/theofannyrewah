@@ -53,9 +53,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3();
     const segmentProps = { type: 'dynamic' as const, canSleep: true, colliders: false as any, angularDamping: 2, linearDamping: 2 };
 
-    // Load assets - using standard React Bits assets
-    const texture = useTexture('https://assets.vercel.com/image/upload/v1677752259/react-three-fiber/lanyard/card.png');
-    const bandTexture = useTexture('https://assets.vercel.com/image/upload/v1677752259/react-three-fiber/lanyard/band.jpg');
+    // Load assets - using local standard React Bits assets
+    const texture = useTexture('/images/card_new.png');
+    const bandTexture = useTexture('/images/band.jpg');
 
     const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
     const [dragged, drag] = useState<THREE.Vector3 | boolean>(false);
