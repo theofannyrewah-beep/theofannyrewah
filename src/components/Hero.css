@@ -1,0 +1,181 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #f0f0f0;
+    /* Light grey base */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+}
+
+/* Noise Texture Overlay */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Standard SVG Noise */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 40px;
+}
+
+/* Center Content */
+.hero-center {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* Vertically center the author name relative to title */
+    justify-content: flex-end;
+    /* Align right */
+    align-self: end;
+    /* Push entire group to bottom of grid */
+    gap: 6rem;
+    padding-right: 0%;
+    /* Slight edge spacing */
+    padding-bottom: 0vh;
+    /* Slight lift from absolute bottom */
+}
+
+/* Blurred Typography Group */
+.hero-title-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 0.75;
+}
+
+.hero-blur-text {
+    font-size: 14rem;
+    /* Adjusted for better fit */
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    filter: blur(12px);
+    opacity: 0.9;
+    color: #000;
+    transition: filter 0.5s ease, opacity 0.5s ease;
+    cursor: default;
+    line-height: 0.8;
+}
+
+.hero-blur-text:hover {
+    filter: blur(0px);
+    opacity: 1;
+}
+
+/* Author Name - Horizontal now */
+.hero-author-name {
+    writing-mode: horizontal-tb;
+    /* Reset to horizontal */
+    transform: none;
+    /* Remove rotation */
+    margin-right: 20px;
+    /* Space from title if desired, or relying on gap */
+}
+
+/* Bottom Visual Elements */
+.hero-bottom-nav {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 3;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.nav-item-visual {
+    cursor: default;
+    /* Not a pointer since it's not a link */
+    color: #888;
+    /* Abu-abu default */
+    transition: color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+}
+
+/* Hover effect matching navbar */
+.nav-item-visual:hover {
+    color: #000;
+    /* Hitam on hover */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Removed specific nth-child positioning as flexbox handles distribution */
+
+.nav-right-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.nav-right-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-blur-text {
+        font-size: 8rem;
+        filter: blur(6px);
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+
+    .hero-center {
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 0;
+    }
+
+    .hero-blur-text {
+        font-size: 6rem;
+        filter: blur(5px);
+    }
+
+    .hero-author-name {
+        margin-top: 20px;
+        margin-left: 0;
+    }
+
+    .hero-bottom-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}

@@ -1,0 +1,87 @@
+.spotlight-card-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    /* Or fitting the container */
+    margin: 30px auto;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Subtle dark card bg */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: default;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.spotlight-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 2px;
+    /* Border thickness */
+    border-radius: 12px;
+    background: transparent;
+    overflow: hidden;
+}
+
+.spotlight-card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    /* Slightly less than wrapper */
+    position: relative;
+    z-index: 2;
+}
+
+/* 
+   The spotlight glow overlay.
+   It uses CSS variables --mouse-x and --mouse-y set by JS.
+*/
+.spotlight-card-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    z-index: 3;
+    /* The Spotlight Gradient */
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.4),
+            transparent 40%);
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    /* Let clicks pass through */
+    mix-blend-mode: overlay;
+    /* Blends nicely with the image */
+}
+
+/* Show spotlight on hover */
+.spotlight-card-wrapper:hover::before {
+    opacity: 1;
+}
+
+/* Optional: Border Glow Effect (another layer behind) */
+.spotlight-card-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    z-index: 1;
+    /* Use same coords for border glow */
+    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.8),
+            transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.spotlight-card-wrapper:hover::after {
+    opacity: 1;
+}

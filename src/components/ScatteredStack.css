@@ -1,0 +1,86 @@
+.scattered-stack-section {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: visible;
+    padding: 0 0 100px 0;
+    /* Removed top padding to bring closer to header */
+}
+
+.scattered-base-content {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    /* Constrain base content to reasonable width if needed, or keep 100% of parent effectively */
+    /* Move background up clearly but keep header visible */
+    margin: 30px auto 0 auto;
+    /* Center it back */
+    z-index: 1;
+}
+
+/* The stack container sits on top, covering the base content if needed */
+.scattered-stack-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Let clicks pass through to base content unless card is hovered */
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scattered-card {
+    position: absolute;
+    width: 250px;
+    /* CHANGE THIS VALUE to adjust photo size */
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+
+    /* Re-enable clicks on cards */
+}
+
+/* Landscape variant for Web Design projects */
+.scattered-card.landscape {
+    width: 550px;
+    /* Wider for web screenshots */
+}
+
+/* Masonry variant for Project 3 Mixed Grid */
+.scattered-stack-container.masonry {
+    display: block;
+    /* Override flex */
+    column-count: 4;
+    column-gap: 20px;
+    padding: 20px;
+    width: 90%;
+    /* Fit within container */
+    max-width: 1200px;
+}
+
+.scattered-card.masonry {
+    position: relative;
+    /* Let CSS place it */
+    width: 100%;
+    margin-bottom: 20px;
+    display: inline-block;
+    /* Prevent column break split issues */
+    break-inside: avoid;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scattered-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
