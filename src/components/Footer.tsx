@@ -1,7 +1,12 @@
 'use client';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import './Footer.css';
-import Lanyard from './Lanyard';
+
+const Lanyard = dynamic(() => import('./Lanyard'), {
+    ssr: false,
+    loading: () => <div style={{ width: '100%', height: '100%' }} />,
+});
 
 export default function Footer() {
     return (
