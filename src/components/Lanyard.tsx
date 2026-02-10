@@ -2,14 +2,12 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
-import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
+import { useTexture, Environment, Lightformer } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
-
-// ... imports
 
 interface LanyardProps {
     position?: [number, number, number];
@@ -53,11 +51,11 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
 function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     const band = useRef<any>(null), fixed = useRef<any>(null), j1 = useRef<any>(null), j2 = useRef<any>(null), j3 = useRef<any>(null), card = useRef<any>(null);
     const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3();
-    const segmentProps = { type: 'dynamic' as const, canSleep: true, colliders: false as any, angularDamping: 4, linearDamping: 4 };
+    const segmentProps = { type: 'dynamic' as const, canSleep: true, colliders: false as any, angularDamping: 2, linearDamping: 2 };
 
-    // Load assets
-    const { nodes, materials } = useGLTF('/card2.glb');
-    const texture = useTexture('images/lanyard.png');
+    // Load assets - using standard React Bits assets
+    const texture = useTexture('https://assets.vercel.com/image/upload/v1677752259/react-three-fiber/lanyard/card.png');
+    const bandTexture = useTexture('https://assets.vercel.com/image/upload/v1677752259/react-three-fiber/lanyard/band.jpg');
 
     const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
     const [dragged, drag] = useState<THREE.Vector3 | boolean>(false);
@@ -102,7 +100,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     });
 
     curve.curveType = 'chordal';
-    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    bandTexture.wrapS = bandTexture.wrapT = THREE.RepeatWrapping;
 
     return (
         <>
@@ -121,18 +119,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
                         onPointerUp={(e) => ((e.target as Element).releasePointerCapture(e.pointerId), drag(false))}
                         onPointerDown={(e) => ((e.target as Element).setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}
                     >
-                        <mesh geometry={(nodes.card as any).geometry}>
-                            <meshPhysicalMaterial
-                                map={(materials.base as any).map}
-                                map-anisotropy={16}
-                                clearcoat={isMobile ? 0 : 1}
-                                clearcoatRoughness={0.15}
-                                roughness={0.9}
-                                metalness={0.8}
-                            />
+                        <mesh>
+                            <planeGeometry args={[0.82, 1.15]} />
+                            <meshStandardMaterial transparent map={texture} side={THREE.DoubleSide} />
                         </mesh>
-                        <mesh geometry={(nodes.clip as any).geometry} material={materials.metal} material-roughness={0.3} />
-                        <mesh geometry={(nodes.clamp as any).geometry} material={materials.metal} />
                     </group>
                 </RigidBody>
             </group>
@@ -145,7 +135,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
                     depthTest={false}
                     resolution={[1000, 1000]}
                     useMap
-                    map={texture}
+                    map={bandTexture}
                     repeat={[-4, 1]}
                     lineWidth={1}
                 />
