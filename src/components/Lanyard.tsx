@@ -2,7 +2,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
-import { useTexture, Environment, Lightformer } from '@react-three/drei';
+import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
@@ -53,9 +53,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3();
     const segmentProps = { type: 'dynamic' as const, canSleep: true, colliders: false as any, angularDamping: 2, linearDamping: 2 };
 
-    // Load assets - using local standard React Bits assets
-    const texture = useTexture('/images/card_new.png');
-    const bandTexture = useTexture('/images/band.jpg');
+    // Load assets
+    const { nodes, materials } = useGLTF('/card.glb');
+    const texture = useTexture('/images/Lanyard.png');
 
     const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
     const [dragged, drag] = useState<THREE.Vector3 | boolean>(false);
@@ -100,7 +100,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     });
 
     curve.curveType = 'chordal';
-    bandTexture.wrapS = bandTexture.wrapT = THREE.RepeatWrapping;
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
     return (
         <>
@@ -119,10 +119,18 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
                         onPointerUp={(e) => ((e.target as Element).releasePointerCapture(e.pointerId), drag(false))}
                         onPointerDown={(e) => ((e.target as Element).setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}
                     >
-                        <mesh>
-                            <planeGeometry args={[0.82, 1.15]} />
-                            <meshStandardMaterial transparent map={texture} side={THREE.DoubleSide} />
+                        <mesh geometry={(nodes.card as any).geometry}>
+                            <meshPhysicalMaterial
+                                map={(materials.base as any).map}
+                                map-anisotropy={16}
+                                clearcoat={isMobile ? 0 : 1}
+                                clearcoatRoughness={0.15}
+                                roughness={0.9}
+                                metalness={0.8}
+                            />
                         </mesh>
+                        <mesh geometry={(nodes.clip as any).geometry} material={materials.metal} material-roughness={0.3} />
+                        <mesh geometry={(nodes.clamp as any).geometry} material={materials.metal} />
                     </group>
                 </RigidBody>
             </group>
@@ -135,7 +143,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
                     depthTest={false}
                     resolution={[1000, 1000]}
                     useMap
-                    map={bandTexture}
+                    map={texture}
                     repeat={[-4, 1]}
                     lineWidth={1}
                 />

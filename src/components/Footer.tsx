@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <footer className="footer-section" id="contact">
             <div className="footer-lanyard-wrapper">
-                <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
+                <Lanyard position={[0, 0, 19]} gravity={[0, -40, 0]} />
             </div>
             <div className="footer-container">
                 {/* Top Brand */}

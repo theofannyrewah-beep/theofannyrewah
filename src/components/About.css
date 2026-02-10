@@ -5,34 +5,14 @@
     background-color: #f0f0f0;
     /* Dark background */
     color: #f0f0f0;
-    min-height: 80vh;
-    padding: 30px 100px;
+    min-height: 70vh;
+    padding: 0px 10px;
+    /* Removed top padding completely to lift content */
     display: flex;
     flex-direction: column;
 }
 
-/* Noise Texture Overlay (Matching Hero) */
-.about-redesign::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Standard SVG Noise */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Ensure content sits above noise */
-.about-header-line,
-.about-grid,
-.bottom-info-grid {
-    position: relative;
-    z-index: 2;
-}
+/* ... existing noise styles ... */
 
 /* Header Line */
 .about-header-line {
@@ -42,8 +22,11 @@
     font-size: 0.8rem;
     font-weight: 500;
     color: #888;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
+    /* Reduced bottom margin */
     text-transform: uppercase;
+    padding-top: 20px;
+    /* Add small top padding to header line only if needed, or keep 0 */
 }
 
 /* Main Grid */
@@ -51,19 +34,13 @@
     display: grid;
     grid-template-columns: 1.2fr 2fr;
     /* Left panel smaller, Right panel wider */
-    gap: 100px;
+    gap: 60px;
+    /* Reduced gap from 100px to bring columns closer */
     /* Left panel smaller, Right panel wider */
     flex: 1;
 }
 
-/* Left Column */
-.about-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 80%;
-    /* Don't fill full height, leave space */
-}
+/* ... left column ... */
 
 /* Photo Styling */
 .about-photo {
@@ -77,7 +54,8 @@
 }
 
 .about-title-group {
-    margin-top: 40px;
+    margin-top: 0px;
+    /* Ensure 0 margin to lift title */
 }
 
 .about-greeting {
@@ -104,7 +82,7 @@
 .about-title {
     display: block;
     margin-top: 10px;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #000000;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -179,7 +157,7 @@
     display: grid;
     grid-template-columns: 110px 1fr;
     /* Year width + Details */
-    gap: 60px;
+    gap: 20px;
     align-items: baseline;
 
     /* Default: Blurred & Dimmed */
@@ -335,4 +313,82 @@
         flex-direction: column;
         gap: 40px;
     }
+}
+
+.about-redesign {
+    padding: 30px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+}
+
+.tools-grid svg {
+    /* Large but balanced size */
+    width: 100%;
+    max-width: 90px;
+    height: auto;
+    opacity: 1;
+    /* Make fully visible by default as requested */
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    /* Ensure the color prop works when grayscale is removed */
+    color: inherit;
+}
+
+.tools-grid svg,
+.tools-grid img {
+    /* Large but balanced size */
+    width: 100%;
+    max-width: 90px;
+    height: auto;
+    opacity: 1;
+    /* Make fully visible by default as requested */
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    /* Ensure the color prop works when grayscale is removed */
+    color: inherit;
+    object-fit: contain;
+    /* Ensure images scale correctly */
+}
+
+.tools-grid svg:hover,
+.tools-grid img:hover {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: grayscale(0%);
+}
+
+/* Resume Button Properties */
+.resume-button {
+    display: inline-block;
+    margin-top: 25px;
+    /* Space from text */
+    padding: 12px 30px;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    width: fit-content;
+    border: 2px solid #000000;
+    /* Ensure visibility */
+}
+
+.resume-button:hover {
+    background-color: transparent;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
