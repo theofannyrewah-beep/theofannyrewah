@@ -1,5 +1,5 @@
 'use client';
-import React, { Suspense } from 'react';
+import React from 'react';
 import './Footer.css';
 import Lanyard from './Lanyard';
 
@@ -7,9 +7,7 @@ export default function Footer() {
     return (
         <footer className="footer-section" id="contact">
             <div className="footer-lanyard-wrapper">
-                <Suspense fallback={null}>
-                    <Lanyard position={[0, 0, 19]} gravity={[0, -40, 0]} />
-                </Suspense>
+                <Lanyard position={[0, 0, 19]} gravity={[0, -40, 0]} />
             </div>
             <div className="footer-container">
                 {/* Top Brand */}
