@@ -55,7 +55,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
 
     // Load assets
     const { nodes, materials } = useGLTF('/card.glb');
-    const texture = useTexture('/images/Lanyard.png');
+    const texture = useTexture('/images/lanyard.png');
 
     const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
     const [dragged, drag] = useState<THREE.Vector3 | boolean>(false);
