@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description: "Portfolio - Full Stack Developer & Designer",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+
+// ... (existing imports)
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,6 +24,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body className={inter.className}>
+        <SmoothScroll />
         {children}
       </body>
     </html>
