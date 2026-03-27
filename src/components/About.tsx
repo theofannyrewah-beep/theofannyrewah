@@ -48,30 +48,37 @@ const About = () => {
                                 <span className="item-year">2020 - 2026</span>
                                 <div className="item-details">
                                     <h4 className="item-title">Lembaga GPIB Pasar Minggu</h4>
+                                    <p className="item-desc">Internal Control & Data Management</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <span className="item-year">2023 - 2024</span>
+                                <div className="item-details">
+                                    <h4 className="item-title">Lembaga GPIB Pasar Minggu</h4>
+                                    <p className="item-desc">Finance & Administration Staff</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <span className="item-year">2024 - 2025</span>
+                                <div className="item-details">
+                                    <h4 className="item-title">UnNamed Football Club</h4>
                                     <p className="item-desc">Graphic Designer</p>
                                 </div>
                             </div>
                             <div className="info-item">
-                            <span className="item-year">2024 - 2025</span>
-                            <div className="item-details">
-                                <h4 className="item-title">UnNamed Football Community</h4>
-                                <p className="item-desc">Graphic Designer</p>
+                                <span className="item-year">2016 - 2019</span>
+                                <div className="item-details">
+                                    <h4 className="item-title">PT. Aryan Indonesia</h4>
+                                    <p className="item-desc">Educator & Ticketing</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="info-item">
-                            <span className="item-year">2016 - 2019</span>
-                            <div className="item-details">
-                                <h4 className="item-title">PT. Aryan Indonesia</h4>
-                                <p className="item-desc">Educator & Ticketing</p>
+                            <div className="info-item">
+                                <span className="item-year">2020</span>
+                                <div className="item-details">
+                                    <h4 className="item-title">PSMEDIA</h4>
+                                    <p className="item-desc">Church Streaming Operators  & Camera Operator</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="info-item">
-                            <span className="item-year">2020</span>
-                            <div className="item-details">
-                                <h4 className="item-title">PSMEDIA</h4>
-                                <p className="item-desc">Church Streaming Operators  & Camera Operator</p>
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </div>
