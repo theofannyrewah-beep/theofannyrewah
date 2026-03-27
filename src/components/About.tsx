@@ -51,9 +51,7 @@ const About = () => {
                                     <p className="item-desc">Graphic Designer</p>
                                 </div>
                             </div>
-
-                        </div>
-                        <div className="info-item">
+                            <div className="info-item">
                             <span className="item-year">2024 - 2025</span>
                             <div className="item-details">
                                 <h4 className="item-title">UnNamed Football Community</h4>
@@ -73,6 +71,7 @@ const About = () => {
                                 <h4 className="item-title">PSMEDIA</h4>
                                 <p className="item-desc">Church Streaming Operators  & Camera Operator</p>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
