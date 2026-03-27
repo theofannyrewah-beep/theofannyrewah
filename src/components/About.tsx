@@ -56,7 +56,7 @@ const About = () => {
                         <div className="info-item">
                             <span className="item-year">2024 - 2025</span>
                             <div className="item-details">
-                                <h4 className="item-title">UnNamed Football Club</h4>
+                                <h4 className="item-title">UnNamed Football Community</h4>
                                 <p className="item-desc">Graphic Designer</p>
                             </div>
                         </div>
