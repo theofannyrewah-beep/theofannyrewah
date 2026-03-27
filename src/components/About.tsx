@@ -48,14 +48,7 @@ const About = () => {
                                 <span className="item-year">2020 - 2026</span>
                                 <div className="item-details">
                                     <h4 className="item-title">Lembaga GPIB Pasar Minggu</h4>
-                                    <p className="item-desc">Internal Control & Data Management</p>
-                                </div>
-                            </div>
-                            <div className="info-item">
-                                <span className="item-year">2023 - 2024</span>
-                                <div className="item-details">
-                                    <h4 className="item-title">Lembaga GPIB Pasar Minggu</h4>
-                                    <p className="item-desc">Finance & Administration Staff</p>
+                                    <p className="item-desc">Graphic Designer</p>
                                 </div>
                             </div>
                             <div className="info-item">
