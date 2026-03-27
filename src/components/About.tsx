@@ -29,7 +29,7 @@ const About = () => {
                             has shaped how I think about planning,
                             responsibility, and managing journeys.</span>
 
-                        <a href="https://drive.google.com/file/d/10FQJBQfCnZSxldF-uWuKe3_5fJkFC3is/view?usp=sharing" className="resume-button" target="_blank" rel="noopener noreferrer">
+                        <a href="https://drive.google.com/file/d/17spa8BzJ763zyIJei2j79K4OHgokyQ0F/view?usp=sharing" className="resume-button" target="_blank" rel="noopener noreferrer">
                             MY RESUME
                         </a>
                     </div>
